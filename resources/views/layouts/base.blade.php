@@ -26,7 +26,11 @@
     </main>
 
     <footer>
-
+       
+        <p>telefoon nummer : 0000000000</p>
+        <p>emailadres :</p>
+        <p>locatie : albertlaan 67</p>
+         <p>&copy; 2026 PaasToernooi. All rights reserved.</p>
     </footer>
 </body>
 
