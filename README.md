@@ -1,2 +1,2 @@
-# Paastournooi
+# Paastoernooi
 
