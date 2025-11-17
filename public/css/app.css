@@ -1,0 +1,229 @@
+:root {
+    --primary-color: #e5e5e5;
+    --secondary-color: #F2F2F2;
+    --tertiary-color: #F9F9F9;
+    --quaternary-color: #ffffff;
+    --accent-color: #9c65c4;
+    --text-color1: #ffffff;
+    --text-color2: #333333;
+    --border: #3333;
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: var(--primary-color);
+    color: #333;
+    line-height: 1.6;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--secondary-color);
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 75px;
+    padding-right: 75px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    color: var(--accent-color);
+}
+
+.links {
+    display: flex;
+    gap: 20px;
+}
+
+.navbar a {
+    padding: 12px 20px;
+    text-decoration: none;
+    color: var(--text-color2);
+    font-weight: 500;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.navbar a:hover {
+    background-color: var(--accent-color);
+    color: var(--text-color1);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(106, 13, 173, 0.3);
+}
+
+
+.home_body {
+    margin-top: 55px;
+}
+
+.home_body h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+.text1 {
+    display: flex;
+    align-items: center;
+    padding-left: 75px;
+    padding-right: 75px;
+}
+
+.text1 h3 {
+    margin-bottom: 30px;
+}
+
+.text1 img {
+    width: 600px;
+    height: auto;
+    margin-right: 20px;
+}
+
+.text1 a {
+    padding: 17px 25px;
+    font-size: 20px;
+    text-decoration: none;
+    color: var(--text-color2);
+    font-weight: 500;
+    border-radius: 8px;
+    border: none;
+    transition: all 0.3s ease;
+    background-color: var(--accent-color);
+    color: var(--text-color1);
+}
+
+.text1 a:hover {
+
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(106, 13, 173, 0.3);
+}
+
+.text2 {
+    margin-top: 50px;
+    max-width: 100%;
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    padding: 20px;
+    padding-left: 75px;
+    padding-right: 75px;
+    display: flex;
+    align-items: center;
+}
+
+.text2 img {
+    width: 450px;
+    height: auto;
+    margin-right: 20px;
+}
+
+.text3 {
+    padding-left: 75px;
+    padding-right: 75px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.text3 h1,
+.text3 h2 {
+    text-align: center;
+}
+
+.text3_1 {
+    display: flex;
+}
+
+.text3_2 {
+    flex: 3;
+    padding: 20px;
+    border: var(--border) 1px solid;
+    border-radius: 25px;
+    margin: 10px;
+    background-color: var(--secondary-color);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+.login_form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 6em;
+    background-color: var(--secondary-color);
+    border-radius: 20px;
+    max-width: 880px;
+    margin: auto;
+    transition: .3s ease-in-out;
+}
+
+.heading {
+    text-align: center;
+    color: var(--text-color2);
+    font-size: 1.5em;
+}
+
+.field {
+    display: flex;
+    align-items: center;
+    gap: 0.4em;
+    padding: 0.5em;
+    border-radius: 15px;
+    background-color: var(--secondary-color);
+    box-shadow: inset 2px 4px 8px rgb(198, 198, 198);
+    margin: 8px;
+}
+
+.input-icon {
+    height: 1em;
+    width: 1em;
+    fill: var(--text-color2);
+}
+
+.input-field {
+    background: none;
+    border: none;
+    outline: none;
+    width: 100%;
+    color: var(--text-color2);
+    font-size: 0.85em;
+    margin: 6px 0;
+}
+
+.login_form .btn {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5em;
+}
+
+.button1,
+.button2 {
+    padding: 0.6em 1em;
+    width: 100px;
+    text-align: center;
+    border-radius: 5px;
+    border: var(--border) 2px solid;
+    background-color: var(--tertiary-color);
+    color: var(--text-color2);
+    transition: .3s;
+    margin: 7px;
+}
+
+
+.button1:hover,
+.button2:hover {
+    background-color: var(--quaternary-color);
+}
