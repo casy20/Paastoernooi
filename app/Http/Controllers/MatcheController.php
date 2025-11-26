@@ -17,6 +17,18 @@ class MatcheController extends Controller
         return view('index', compact('Matches'));
     }
 
+        public function voetbal()
+    {
+        $Matches = Matche::all();
+        return view('voetbal', compact('Matches')); 
+    }
+
+    public function lijnbal()
+    {
+        $Matches = Matche::all();
+        return view('lijnbal', compact('Matches')); 
+    }
+
     /**
      * Show the form for creating a new resource.
      */

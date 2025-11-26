@@ -21,6 +21,8 @@
                     Elk jaar organiseren wij zeven toernooien: voetbal voor groep 3/4, 5/6 en 7/8 (gemengd), voetbal voor de eerste klas jongens/gemengd en meiden, en lijnbal voor groep 7/8 en de eerste klas meiden.  
                     De toernooien vinden rond Pasen plaats op verschillende sportlocaties in Bergen op Zoom en omgeving, en staan garant voor sportiviteit, plezier en een gezellige sfeer voor alle deelnemers.
                 </h3>
+                <a href="{{ route('voetbal') }}">voetbal</a>
+                <a href="{{ route('lijnbal') }}">lijnbal</a>
             </div>
         </div>
 
