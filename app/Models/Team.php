@@ -1,0 +1,30 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
+class Team extends Model
+{
+    /** @use HasFactory<\Database\Factories\TeamFactory> */
+    use HasFactory;
+
+    protected $fillable = [
+        'school_id',
+        'referee',
+        'name',
+        'pool_id',
+    ];
+
+    public function school() : BelongsTo    
+    {
+        return $this->belongsTo(School::class);
+    }
+
+    public function pool() : BelongsTo
+    {
+        return $this->belongsTo(Pool::class);
+    }
+}

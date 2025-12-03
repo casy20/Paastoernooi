@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PaasToernooi</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <script src="{{ asset('js/navbar.js') }}"></script>
     <link rel="icon" href="{{ asset('img/logo.png') }}" type="image/png">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -37,9 +38,9 @@
             </div>
             <div class="footer-column">
                 <h3>Links</h3>
-                <a href="#">Home</a>
-                <a href="#">Voetbal</a>
-                <a href="#">Lijnbal</a>
+                <a href="{{ route('home') }}">Home</a>
+                <a href="{{ route('voetbal') }}">Voetbal</a>
+                <a href="{{ route('lijnbal') }}">Lijnbal</a>
                 <a href="#">Contact</a>
             </div>
         </div>
