@@ -16,7 +16,8 @@
             </div>
             <div class="links">
                 <a href="{{ route('home') }}">Home</a>
-                <a href="#">Contact</a>
+                <a href="{{ route('informatie') }}">Over</a>
+                <a href="{{ route('contact') }}">Contact</a>
                 <a href="{{ route('login') }}">Login</a>
             </div>
         </div>
@@ -27,8 +28,8 @@
 
     <footer>
        
-        <p>telefoon nummer : 0000000000</p>
-        <p>emailadres :</p>
+        <p>telefoon nummer : 06-12345678</p>
+        <p>emailadres : passtoernooi@gmail.com </p>
         <p>locatie : albertlaan 67</p>
          <p>&copy; 2026 PaasToernooi. All rights reserved.</p>
     </footer>
