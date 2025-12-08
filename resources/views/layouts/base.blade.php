@@ -41,7 +41,6 @@
                 <a href="{{ route('home') }}">Home</a>
                 <a href="{{ route('voetbal') }}">Voetbal</a>
                 <a href="{{ route('lijnbal') }}">Lijnbal</a>
-                <a href="#">Contact</a>
             </div>
         </div>
         <div class="footer-bottom">

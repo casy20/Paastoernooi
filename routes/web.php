@@ -11,9 +11,9 @@ Route::get('/voetbal', [MatcheController::class, 'voetbal'])->name('voetbal');
 Route::get('/lijnbal', [MatcheController::class, 'lijnbal'])->name('lijnbal');
 
 
-Route::resource('paastoernoois', TeamController::class);
-Route::resource('Paastournoois', MatcheController::class);
-Route::resource('Paastournoois', SchoolController::class);
+Route::resource('Team', TeamController::class);
+Route::resource('Matche', MatcheController::class);
+Route::resource('school', SchoolController::class);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -25,6 +25,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/team_create', [TeamController::class,'index'])->name('team_create');
+    Route::get('/create_school', [SchoolController::class,'create'])->name('create_school');
 });
 
 require __DIR__.'/auth.php';

@@ -1,7 +1,7 @@
 <x-base-layout>
         <div class="team_text">
             <h1>Maak een team aan</h1>
-            <form action="{{ route('paastoernoois.store') }}" method="POST">
+            <form action="{{ route('Team.store') }}" method="POST">
                 @csrf
                 <div class="team_form">
                     <label for="school_id">School naam</label>

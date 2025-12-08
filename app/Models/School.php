@@ -14,4 +14,9 @@ class School extends Model
         'name',
         'creator_id',
     ];
+
+    public function teams()
+    {
+        return $this->belongsTo(Team::class);
+    }
 }

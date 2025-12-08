@@ -18,7 +18,7 @@ class SchoolController extends Controller
     public function index()
     {
         $schools = School::all();
-        return view("team_create", compact("schools"));
+        return view("schools.index", compact("schools"));
     }
 
     /**
@@ -26,9 +26,7 @@ class SchoolController extends Controller
      */
     public function create()
     {
-        $teams = Team::all();
-        $pools = Pool::all();
-        return view('create', compact('teams', 'pools'));
+        return view("Create_school");
     }
 
     /**
@@ -36,14 +34,13 @@ class SchoolController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
+        $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'creator_id' => 'required|integer',
         ]);
 
-        School::create($validatedData);
-        return redirect()->route('paastoernoois.index')->with('success', 'Team toegevoegd!');
+        School::create($validated);
 
+        return redirect()->route('home')->with('success', 'School toegevoegd!');
     }
 
     /**
