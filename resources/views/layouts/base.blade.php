@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PaasToernooi</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <script src="{{ asset('js/navbar.js') }}"></script>
     <link rel="icon" href="{{ asset('img/logo.png') }}" type="image/png">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -28,11 +29,28 @@
         {{ $slot }}
     </main>
     <footer>
-       
-        <p>telefoon nummer : 0000000000</p>
-        <p>emailadres :</p>
-        <p>locatie : albertlaan 67</p>
-         <p>&copy; 2026 PaasToernooi. All rights reserved.</p>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>PaasToernooi</h3>
+                <p>Samen plezier en sportiviteit beleven!</p>
+            </div>
+            <div class="footer-column">
+                <h3>Contact</h3>
+                <p>Email: info@paastoernooi.nl</p>
+                <p>Telefoon: 06-12345678</p>
+                <p>Adres: Sportlaan 12, Bergen op Zoom</p>
+            </div>
+            <div class="footer-column">
+                <h3>Links</h3>
+                <a href="#">Home</a>
+                <a href="#">Voetbal</a>
+                <a href="#">Lijnbal</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2025 PaasToernooi. Alle rechten voorbehouden.
+        </div>
     </footer>
 </body>
 

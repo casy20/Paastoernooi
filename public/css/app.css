@@ -7,6 +7,9 @@
     --text-color1: #ffffff;
     --text-color2: #333333;
     --border: #3333;
+    --button: #1b1b1b;
+    --button_hover: #333333;
+
 }
 
 * {
@@ -20,6 +23,7 @@ body {
     background-color: var(--primary-color);
     color: var(--text-color2);
     line-height: 1.6;
+    padding-top: 80px;
 }
 
 footer {
@@ -85,18 +89,17 @@ footer {
     transform: translateY(-0.8px);
 }
 
-.header {
-    color: var(--text-color2);
-    padding: 15px 10px;
-    text-align: center;
-    margin-top: 40px;
-    border-top: 1px solid var(--border);
-}
-
 .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
     padding: 10px 20px;
     background-color: var(--secondary-color);
+    border-bottom: var(--border) 1px solid;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+    transition: top 0.3s ease;
 }
 
 .navbar a {
@@ -317,6 +320,84 @@ footer {
 .button2:hover {
     background-color: var(--quaternary-color);
 }
+
+.team_text{
+    width: 600px;
+    margin-top: 20px;
+    text-align: center;
+    margin: 50px auto 20px auto;
+    border: var(--border) 1px solid;
+    border-radius: 25px;
+    padding: 20px;
+    background-color: var(--tertiary-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 50px;
+}
+
+.team_text h1{
+    font-size: 30px !important;
+    margin-bottom: 20px;
+}
+
+.team_form{
+    display: flex;
+    flex-direction: column;
+}
+
+.team_input {
+    padding: 10px !important;
+    border-radius: 8px !important;             
+    border: var(--border) 1px solid !important;
+    margin: 5px 10px 15px 10px !important;
+    font-size: 16px !important;
+    width: calc(100% - 20px) !important;
+}
+
+.team_drop {
+    width: calc(100% - 20px) !important;
+    margin: 5px 10px 15px 10px !important;
+    padding: 10px 40px 10px 15px;
+    border-radius: 8px;
+    border: var(--border) 1px solid;
+    font-size: 16px;
+    background-color: white;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="gray" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>'); /* pijl */
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.team_drop:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+    background-color: #f9f9f9;
+}
+
+
+.team_drop select {
+    padding: 20px;
+    border: none;
+    background-color: #9c65c4;
+}
+
+.submit{
+    padding: 10px;
+    border-radius: 10px;
+    background-color: var(--button);
+    color: var(--text-color1);
+}
+
+.submit:hover{
+    transition: transform 0.5s ease;
+    transform: translateY(-0.8px);
+    background-color: var(--button_hover) ;
+}
+
 
 @media (max-width: 768px) {
     img {
