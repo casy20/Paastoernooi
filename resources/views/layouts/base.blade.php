@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PaasToernooi</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="icon" href="{{ asset('img/logo.png') }}" type="image/png">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
 </head>
 
 <body>
@@ -16,8 +19,7 @@
             </div>
             <div class="links">
                 <a href="{{ route('home') }}">Home</a>
-                <a href="{{ route('informatie') }}">Over</a>
-                <a href="{{ route('contact') }}">Contact</a>
+                <a href="#">Contact</a>
                 <a href="{{ route('login') }}">Login</a>
             </div>
         </div>
@@ -25,11 +27,10 @@
     <main>
         {{ $slot }}
     </main>
-
     <footer>
        
-        <p>telefoon nummer : 06-12345678</p>
-        <p>emailadres : passtoernooi@gmail.com </p>
+        <p>telefoon nummer : 0000000000</p>
+        <p>emailadres :</p>
         <p>locatie : albertlaan 67</p>
          <p>&copy; 2026 PaasToernooi. All rights reserved.</p>
     </footer>

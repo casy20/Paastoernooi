@@ -1,5 +1,5 @@
 :root {
-    --primary-color: #e5e5e5;
+    --primary-color: #edecec;
     --secondary-color: #F2F2F2;
     --tertiary-color: #F9F9F9;
     --quaternary-color: #ffffff;
@@ -7,32 +7,68 @@
     --text-color1: #ffffff;
     --text-color2: #333333;
     --border: #3333;
-
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
 }
 
 body {
     background-color: var(--primary-color);
-    color: #333;
+    color: var(--text-color2);
     line-height: 1.6;
 }
 
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+footer {
     background-color: var(--secondary-color);
-    padding-top: 15px;
-    padding-bottom: 15px;
-    padding-left: 75px;
-    padding-right: 75px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: var(--text-color2);
+    padding: 40px 20px;
+    width: 100%;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.footer-column {
+    flex: 1 1 200px;
+    min-width: 180px;
+}
+
+.footer-column h3 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: var(--accent-color);
+}
+
+.footer-column p,
+.footer-column a {
+    font-size: 0.95rem;
+    color: var(--text-color2);
+    text-decoration: none;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.footer-column a:hover,
+.footer-column p:hover,
+.footer-column h3:hover {
+    color: var(--accent-color);
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 0.9rem;
+    opacity: 0.8;
 }
 
 .logo {
@@ -44,22 +80,35 @@ body {
     gap: 20px;
 }
 
+.links :hover {
+    color: var(--accent-color);
+    transform: translateY(-0.8px);
+}
+
+.header {
+    color: var(--text-color2);
+    padding: 15px 10px;
+    text-align: center;
+    margin-top: 40px;
+    border-top: 1px solid var(--border);
+}
+
+.navbar {
+    padding: 10px 20px;
+    background-color: var(--secondary-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
 .navbar a {
+    display: inline-flex;
+    align-items: center;
     padding: 12px 20px;
     text-decoration: none;
     color: var(--text-color2);
     font-weight: 500;
     border-radius: 8px;
-    transition: all 0.3s ease;
+    transition: 0.3s;
 }
-
-.navbar a:hover {
-    background-color: var(--accent-color);
-    color: var(--text-color1);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(106, 13, 173, 0.3);
-}
-
 
 .home_body {
     margin-top: 55px;
@@ -82,9 +131,14 @@ body {
 }
 
 .text1 img {
-    width: 600px;
+    max-width: 100px;
+    width: 100%;
     height: auto;
-    margin-right: 20px;
+}
+
+.voetbalimg {
+    width: 400px !important;
+    height: auto;
 }
 
 .text1 a {
@@ -101,7 +155,6 @@ body {
 }
 
 .text1 a:hover {
-
     transform: translateY(-2px);
     box-shadow: 0 4px 10px rgba(106, 13, 173, 0.3);
 }
@@ -119,9 +172,46 @@ body {
 }
 
 .text2 img {
-    width: 450px;
+    max-width: 450px;
+    width: 100%;
     height: auto;
-    margin-right: 20px;
+}
+
+.text2-voetbal {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.lijnbalimg {
+    width: 400px !important;
+    height: auto;
+}
+
+.text2 h3 {
+    margin-bottom: 30px;
+}
+
+.text2 a {
+    margin-right: 10px;
+    padding: 17px 25px;
+    font-size: 20px;
+    text-align: center; 
+    text-decoration: none;
+    color: var(--text-color2)!important;
+    font-weight: 500;
+    border-radius: 8px;
+    border: none;
+    transition: all 0.3s ease;
+    background-color: var(--secondary-color);
+    color: var(--text-color1);
+}
+
+.text2 a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(106, 13, 173, 0.3);
+    background-color: var(--quaternary-color);
 }
 
 .text3 {
@@ -152,12 +242,13 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.login{
+.login {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 80vh;
 }
+
 .login_form {
     display: flex;
     flex-direction: column;
@@ -222,8 +313,91 @@ body {
     margin: 7px;
 }
 
-
 .button1:hover,
 .button2:hover {
     background-color: var(--quaternary-color);
+}
+
+@media (max-width: 768px) {
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .text1,
+    .text2,
+    .text2-voetbal,
+    .text3_1 {
+        flex-direction: column;
+        text-align: center;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    .text1 img,
+    .text2 img,
+    .text2-voetbal img,
+    .lijnbalimg,
+    .voetbalimg {
+        width: 80% !important;
+        margin: 0 0 20px 0;
+    }
+
+    .home_body h1 {
+        font-size: 32px;
+    }
+
+    .links {
+        flex-direction: row;
+        gap: 10px;
+        text-align: center;
+    }
+
+    .navbar a {
+        padding: 10px;
+        display: block;
+    }
+
+    .text2 {
+        padding: 20px;
+    }
+
+    .text3 {
+        padding: 20px;
+    }
+
+    .text3_1 {
+        flex-direction: column;
+    }
+}
+
+.text1 img,
+.text2 img,
+.text2-voetbal img,
+.voetbalimg,
+.lijnbalimg {
+    margin-top: 5px;
+    width: 50% !important;
+    height: auto;
+}
+
+@media (max-width: 600px) {
+    .text1 img { max-width: 300px; }
+    .text2 img { max-width: 250px; }
+    .lijnbalimg { max-width: 200px; }
+    .voetbalimg { max-width: 100px; }
+}
+
+@media (min-width: 1000px) and (max-width: 1400px) {
+    .text1 img { max-width: 400px; }
+    .text2 img { max-width: 400px; }
+    .lijnbalimg { max-width: 200px; }
+    .voetbalimg { max-width: 100px; }
+}
+
+@media (min-width: 1401px) {
+    .text1 img { max-width: 400px; }
+    .text2 img { max-width: 400px; }
+    .lijnbalimg { max-width: 200px; }
+    .voetbalimg { max-width: 100px; }
 }
