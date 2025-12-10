@@ -2,9 +2,17 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MatcheController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ManagementController;
+use App\Http\Controllers\ManualController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\SchoolController;
-use Illuminate\Support\Facades\Route;
+
+Route::get('/management', [ManagementController::class, 'index'])->name('management.index');
+
+Route::post('/manuals', [ManualController::class, 'store'])->name('manuals.store');
+Route::get('/manuals', [ManualController::class, 'index'])->name('manuals.index');
+
 
 Route::get('/', [MatcheController::class, 'index'])->name('home');
 Route::get('/voetbal', [MatcheController::class, 'voetbal'])->name('voetbal');
