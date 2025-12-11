@@ -6,7 +6,7 @@
                 <div class="flex">
                     <!-- Logo -->
                     <div class="shrink-0 flex items-center">
-                        <div style="display: flex; align-items: center;">
+                        <div style="display: flex; align-items: center; margin-left: 3em;">
                             <img src="{{ asset('img/logo.png') }}" alt="Logo" style="width: 60px; height: 60px; margin-right: 10px;">
                             <a style="color: #9c65c4; font-weight: bold; font-size: large;" href="{{ route('home') }}">PaasToernooi</a>
                         </div>
