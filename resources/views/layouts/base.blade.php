@@ -20,8 +20,11 @@
             </div>
             <div class="links">
                 <a href="{{ route('home') }}">Home</a>
-                <a href="#">Contact</a>
+                <a href="{{ route('informatie') }}">Over</a>
+                <a href="{{ route('contact') }}">Contact</a>
                 <a href="{{ route('login') }}">Login</a>
+                
+                <a href="{{ route('register') }}">Register</a>
             </div>
         </div>
     </header>
