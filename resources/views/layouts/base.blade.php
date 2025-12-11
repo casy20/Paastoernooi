@@ -13,25 +13,17 @@
 </head>
 
 <body>
-    <header>
-        <div class="navbar">
-            <div class="logo">
-                <h2>PaasToernooi</h2>
+    @include('layouts.navigation')
+        @isset($header)
+        <header class="bg-white shadow">
+            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                {{ $header }}
             </div>
-            <div class="links">
-                <a href="{{ route('home') }}">Home</a>
-                <a href="{{ route('informatie') }}">Over</a>
-                <a href="{{ route('contact') }}">Contact</a>
-                <a href="{{ route('login') }}">Login</a>
-                
-                <a href="{{ route('register') }}">Register</a>
-            </div>
-        </div>
-    </header>
+            </header>
+    @endisset
     <main>
         {{ $slot }}
     </main>
-    {% if showFooter %}
     <footer>
         <div class="footer-container">
             <div class="footer-column">
@@ -46,10 +38,9 @@
             </div>
             <div class="footer-column">
                 <h3>Links</h3>
-                <a href="#">Home</a>
-                <a href="#">Voetbal</a>
-                <a href="#">Lijnbal</a>
-                <a href="#">Contact</a>
+                <a href="{{ route('home') }}">Home</a>
+                <a href="{{ route('voetbal') }}">Voetbal</a>
+                <a href="{{ route('lijnbal') }}">Lijnbal</a>
             </div>
         </div>
         <div class="footer-bottom">
