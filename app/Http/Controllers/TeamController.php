@@ -14,9 +14,7 @@ class TeamController extends Controller
     public function index()
     {
         $teams = Team::all();
-        $schools = School::all();
-        $pools = Pool::all();
-        return view("team_create", compact("teams", "schools", "pools"));
+        return view("index", compact("teams"));
     }
 
     /**
@@ -24,8 +22,12 @@ class TeamController extends Controller
      */
     public function create()
     {
-        return view('create');
+        $schools = School::all();
+        $pools = Pool::all();
+
+        return view('team_create', compact('schools', 'pools'));
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -40,7 +42,7 @@ class TeamController extends Controller
         ]);
 
         $team = Team::create($validatedData);
-        return redirect()->route('paastoernoois.index')->with('success', 'Team toegevoegd!');
+        return redirect()->route('teams.index')->with('success', 'Team toegevoegd!');
     }
 
     /**

@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateSchoolRequest;
 use App\Models\Team;
 use App\Models\Pool;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 
 class SchoolController extends Controller
@@ -36,7 +37,10 @@ class SchoolController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
+            'school_type' => 'required|string|max:255',
         ]);
+
+        $validated['creator_id'] = Auth::id();
 
         School::create($validated);
 

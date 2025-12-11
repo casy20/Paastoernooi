@@ -11,9 +11,9 @@ Route::get('/voetbal', [MatcheController::class, 'voetbal'])->name('voetbal');
 Route::get('/lijnbal', [MatcheController::class, 'lijnbal'])->name('lijnbal');
 
 
-Route::resource('Team', TeamController::class);
-Route::resource('Matche', MatcheController::class);
-Route::resource('school', SchoolController::class);
+Route::resource('teams', TeamController::class);
+Route::resource('matches', MatcheController::class);
+Route::resource('schools', SchoolController::class);
 
 Route::get('/informatie', function () {
     return view('informatie');
@@ -32,7 +32,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::get('/team_create', [TeamController::class,'index'])->name('team_create');
+    Route::get('/team_create', [TeamController::class,'create'])->name('team_create');
     Route::get('/create_school', [SchoolController::class,'create'])->name('create_school');
 });
 

@@ -9,4 +9,9 @@ class Pool extends Model
 {
     /** @use HasFactory<\Database\Factories\PoolFactory> */
     use HasFactory;
+
+    protected $fillable = [
+        'tournament_id',
+        'name',
+    ];
 }

@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Symfony\Component\HttpKernel\Profiler\Profile;
 
 class School extends Model
 {
@@ -12,11 +14,12 @@ class School extends Model
 
     protected $fillable = [
         'name',
+        'school_type',
         'creator_id',
     ];
 
-    public function teams()
+    public function creator_id() : BelongsTo
     {
-        return $this->belongsTo(Team::class);
+        return $this->belongsTo(Profile::class);
     }
 }

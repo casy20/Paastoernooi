@@ -8,7 +8,9 @@
                     We organiseren sportieve en gezellige voetbal- en lijnbaltoernooien voor leerlingen van groep 3 t/m 8 en de eerste klas van de middelbare school.  
                     Vorm samen met je klasgenoten een team en beleef een dag vol sport, plezier en fair play!
                 </h3>
-                <a href="#">Inschrijven</a>
+                <a href="{{ route('team_create') }}">Inschrijven</a>
+                <a href="{{ route('create_school') }}">school toevoegen</a>
+
             </div>
             <img src="{{ asset('img/logo.png') }}" alt="Stichting Paastoernooien Bergen op Zoom">
         </div>

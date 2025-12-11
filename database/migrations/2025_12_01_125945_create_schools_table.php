@@ -14,8 +14,11 @@ return new class extends Migration
         Schema::create('schools', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('creator_id');
+            $table->string('school_type');
+            $table->unsignedBigInteger('creator_id')->nullable();
             $table->timestamps();
+
+            $table->foreign('creator_id')->references('id')->on('users');
         });
     }
 

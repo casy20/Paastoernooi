@@ -40,7 +40,7 @@
         <!-- Confirm Password -->
         <div>
             <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-            <x-text-input id="password_confirmation" type="password" name="password_confirmation" required class="mt-1 w-full" />
+            <x-text-input id="password_confirmation" type="password" name="password_confirmation" required class="mt-1 w-full"/>
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
             <button 
                 type="button" 

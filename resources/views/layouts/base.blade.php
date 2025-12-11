@@ -28,6 +28,7 @@
     <main>
         {{ $slot }}
     </main>
+    {% if showFooter %}
     <footer>
         <div class="footer-container">
             <div class="footer-column">
