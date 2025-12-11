@@ -14,6 +14,7 @@ Route::get('/lijnbal', [MatcheController::class, 'lijnbal'])->name('lijnbal');
 Route::resource('teams', TeamController::class);
 Route::resource('matches', MatcheController::class);
 Route::resource('schools', SchoolController::class);
+Route::resource('admin_Users', ProfileController::class);
 
 Route::get('/informatie', function () {
     return view('informatie');
@@ -27,6 +28,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -34,6 +36,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/team_create', [TeamController::class,'create'])->name('team_create');
     Route::get('/create_school', [SchoolController::class,'create'])->name('create_school');
+    Route::get('/admin_Users', [ProfileController::class,'adminUsers'])->name('admin_Users');
 });
 
 require __DIR__.'/auth.php';

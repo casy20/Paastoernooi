@@ -61,6 +61,7 @@ class SchoolController extends Controller
     public function edit(School $school)
     {
         //
+
     }
 
     /**
