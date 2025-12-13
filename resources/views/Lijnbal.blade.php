@@ -67,6 +67,28 @@
 
             </div>
         </div>
-
     </div>
+            <footer>
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h3>PaasToernooi</h3>
+                    <p>Samen plezier en sportiviteit beleven!</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <p>Email: info@paastoernooi.nl</p>
+                    <p>Telefoon: 06-12345678</p>
+                    <p>Adres: Sportlaan 12, Bergen op Zoom</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Links</h3>
+                    <a href="{{ route('home') }}">Home</a>
+                    <a href="{{ route('voetbal') }}">Voetbal</a>
+                    <a href="{{ route('lijnbal') }}">Lijnbal</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2025 PaasToernooi. Alle rechten voorbehouden.
+            </div>
+        </footer>
 </x-base-layout>

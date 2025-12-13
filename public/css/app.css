@@ -31,8 +31,6 @@ main {
 body {
     background-color: var(--primary-color);
     color: var(--text-color2);
-    line-height: 1.6;
-    padding-top: 80px;
     display: flex;
     flex-direction: column;
 }
@@ -101,7 +99,6 @@ footer {
 }
 
 .navbar {
-    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -378,6 +375,124 @@ footer {
     transform: translateY(-0.8px);
     background-color: var(--button_hover) ;
 }
+
+
+.admin_users {
+    flex: 1;              /* neemt de resterende ruimte naast sidebar */
+    padding: 20px;        /* optioneel voor ruimte binnenin */
+    max-width: none;      /* niet centreren */
+    margin: 0;            /* geen automatische centrering */
+    box-sizing: border-box;
+}
+
+
+.admin_users__title {
+    font-size: 2em;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.admin_users__table {
+    width: 100%;
+}
+
+.admin_users__table th,
+.admin_users__table td {
+    border: 2px solid #ccc;
+    padding: 4px;
+    text-align: left;
+}
+
+.admin_users__input:focus {
+    outline: none;
+}
+
+
+.admin_users__button {
+    background-color: #007bff;
+    color: white;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.admin_users__button:hover {
+    background-color: #0056b3;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.admin_page {
+    display: flex;
+    min-height: 100%;
+}
+
+.alert {
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+
+/* Navigatie links */
+.admin_nav {
+    width: 220px;
+    background-color: var(--secondary-color);
+    color: var(--text-color2);
+    padding: 20px;
+}
+
+.admin_nav__title {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.admin_nav__menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.admin_nav__menu li {
+    margin-bottom: 10px;
+}
+
+.admin_nav__menu a {
+    color: var(--text-color2);
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.admin_nav__menu a:hover{
+    background-color: var(--tertiary-color);
+    color: var(--text-color2);
+}
+
+.admin_nav__menu a.active {
+    background-color: var(--tertiary-color);
+    color: var(--text-color2);
+}
+
+.admin_users {
+    flex: 1;
+    padding: 20px;
+}
+
 
 
 @media (max-width: 768px) {
