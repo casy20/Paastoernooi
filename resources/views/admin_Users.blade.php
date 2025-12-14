@@ -11,7 +11,7 @@
                 <input type="email" name="email" placeholder="email" value="{{ $user->email }}">
                 <input type="text" name="password" placeholder="password">
                 <input type="text" name="phone" placeholder="phone" value="{{ $user->phone }}">
-                <input type="checkbox" name="admin" placeholder="admin" value="{{ $user->admin }}">
+                <input type="checkbox" name="admin" placeholder="admin" {{ $user->admin ? 'checked' : '' }}>
                 <button type="submit">Submit</button>
             </form>
         @endforeach

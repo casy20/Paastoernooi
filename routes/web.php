@@ -29,6 +29,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -37,6 +38,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/team_create', [TeamController::class,'create'])->name('team_create');
     Route::get('/create_school', [SchoolController::class,'create'])->name('create_school');
     Route::get('/admin_Users', [ProfileController::class,'adminUsers'])->name('admin_Users');
+    Route::put('/admin/users/{id}', [ProfileController::class, 'updateUser'])
+     ->name('admin_Users.update');
+
 });
 
 require __DIR__.'/auth.php';

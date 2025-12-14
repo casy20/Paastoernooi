@@ -27,6 +27,23 @@ class ProfileController extends Controller
         return view('admin_Users_edit', compact('users'));
     }
 
+public function updateUser(Request $request, $id)
+{
+    $user = Auth::user()->find($id);
+
+    $validated = $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
+        'password' => 'nullable|string|min:8|confirmed',
+        'admin' => 'required|boolean',
+    ]);
+
+    $user->update($validated);
+
+    return redirect()->route('admin_Users')->with('success', 'User updated successfully.');
+}
+
+
 
 
     public function edit(Request $request): View
@@ -35,6 +52,7 @@ class ProfileController extends Controller
             'user' => $request->user(),
         ]);
     }
+
 
     /**
      * Update the user's profile information.
@@ -72,4 +90,5 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+    
 }
