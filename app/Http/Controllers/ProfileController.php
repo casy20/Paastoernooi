@@ -2,51 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProfileUpdateRequest;
-use Illuminate\Http\RedirectResponse;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
     /**
-     * Display the user's profile form.
+     * Profiel van ingelogde gebruiker
      */
-
-    public function adminUsers()
-    {
-        $users = Auth::user()->all();
-        return view('admin_Users', compact('users'));
-    }
-
-    public function adminUsersEdit()
-    {
-        $users = Auth::user()->all();
-        return view('admin_Users_edit', compact('users'));
-    }
-
-public function updateUser(Request $request, $id)
-{
-    $user = Auth::user()->find($id);
-
-    $validated = $request->validate([
-        'name' => 'required|string|max:255',
-        'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
-        'password' => 'nullable|string|min:8|confirmed',
-        'admin' => 'required|boolean',
-    ]);
-
-    $user->update($validated);
-
-    return redirect()->route('admin_Users')->with('success', 'User updated successfully.');
-}
-
-
-
-
-    public function edit(Request $request): View
+    public function edit(Request $request)
     {
         return view('profile.edit', [
             'user' => $request->user(),
@@ -55,25 +22,33 @@ public function updateUser(Request $request, $id)
 
 
     /**
-     * Update the user's profile information.
+     * Update profiel van ingelogde gebruiker
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function update(Request $request)
     {
-        $request->user()->fill($request->validated());
+        $user = $request->user();
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        $user->name = $request->get('name');
+        $user->email = $request->get('email');
+        $user->phone = $request->get('phone');
+
+        if ($request->filled('password')) {
+            $user->password = Hash::make($request->get('password'));
         }
 
-        $request->user()->save();
+        if ($user->isDirty('email')) {
+            $user->email_verified_at = null;
+        }
+
+        $user->save();
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
     /**
-     * Delete the user's account.
+     * Delete profiel van ingelogde gebruiker
      */
-    public function destroy(Request $request): RedirectResponse
+    public function destroy(Request $request)
     {
         $request->validateWithBag('userDeletion', [
             'password' => ['required', 'current_password'],
@@ -90,5 +65,58 @@ public function updateUser(Request $request, $id)
 
         return Redirect::to('/');
     }
-    
+
+    /**
+     * Admin: overzicht van alle gebruikers
+     */
+    public function adminUsers()
+    {
+        $users = User::all();
+        return view('admin_Users', compact('users'));
+    }
+
+    /**
+     * Admin: edit formulier voor één gebruiker
+     */
+    public function adminUsersEdit(string $id)
+    {
+        $user = User::findOrFail($id);
+        return view('admin_Users_edit', compact('user'));
+    }
+
+    /**
+     * Admin: update één gebruiker
+     */
+   public function adminUsersupdate(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+
+        // Validatie
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255|unique:users,email,' . $user->id,
+            'password' => 'nullable|string|min:6',
+            'phone' => 'nullable|string|max:20',
+        ]);
+
+        // Update data
+        $user->name = $request->name;
+        $user->email = $request->email;
+
+        if($request->password){
+            $user->password = bcrypt($request->password);
+        }
+
+        $user->phone = $request->phone;
+        $user->admin = $request->has('admin');
+        $user->save();
+
+        return redirect()->route('admin_Users')->with('status', 'user-updated');
+    }
+
+    public function adminUsersdestroy(string $id)
+    {
+        User::findOrFail($id)->delete();
+        return redirect()->route('admin_Users')->with('status', 'user-deleted');
+    }
 }

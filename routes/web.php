@@ -10,36 +10,31 @@ Route::get('/', [MatcheController::class, 'index'])->name('home');
 Route::get('/voetbal', [MatcheController::class, 'voetbal'])->name('voetbal');
 Route::get('/lijnbal', [MatcheController::class, 'lijnbal'])->name('lijnbal');
 
-
 Route::resource('teams', TeamController::class);
 Route::resource('matches', MatcheController::class);
 Route::resource('schools', SchoolController::class);
-Route::resource('admin_Users', ProfileController::class);
 
-Route::get('/informatie', function () {
-    return view('informatie');
-})->name('informatie');
-
-Route::get('/contact', function () {
-    return view('contact');
-})->name('contact');
+Route::view('/informatie', 'informatie')->name('informatie');
+Route::view('/contact', 'contact')->name('contact');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-
-
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth'])->group(function () {
+    
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    
+    Route::get('/admin/users', [ProfileController::class,'adminUsers'])->name('admin_Users');
+    Route::put('/admin/users/{id}', [ProfileController::class,'adminUsersUpdate'])->name('admin_Users.update');
+    Route::delete('/admin/users/{id}', [ProfileController::class, 'adminUsersdestroy'])
+    ->name('admin_Users.destroy');
+
 
     Route::get('/team_create', [TeamController::class,'create'])->name('team_create');
     Route::get('/create_school', [SchoolController::class,'create'])->name('create_school');
-    Route::get('/admin_Users', [ProfileController::class,'adminUsers'])->name('admin_Users');
-    Route::put('/admin/users/{id}', [ProfileController::class, 'updateUser'])
-     ->name('admin_Users.update');
 
 });
 
