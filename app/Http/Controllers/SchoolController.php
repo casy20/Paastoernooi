@@ -60,16 +60,22 @@ class SchoolController extends Controller
      */
     public function edit(School $school)
     {
-        //
-
+        return view('create_school', compact('school'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateSchoolRequest $request, School $school)
+    public function update(Request $request, School $school)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'school_type' => 'required|string|max:255',
+        ]);
+
+        $school->update($validated);
+
+        return redirect()->route('home')->with('success', 'School bijgewerkt!');
     }
 
     /**
@@ -78,5 +84,7 @@ class SchoolController extends Controller
     public function destroy(School $school)
     {
         //
+        school :: findOrFail()->delete();
+        return redirect()->route('festival.index');
     }
 }
