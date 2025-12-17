@@ -11,7 +11,11 @@
                 <div class="team_form">
                     <label for="school_type"></label>
                     <select name="school_type" required class="team_input">
-                        <option value="">kies een school type</option>
+                        <button>
+                            <selectedcontent></selectedcontent>
+                            <span class="picker">👇</span>
+                        </button>
+                        <option value="" disabled selected hidden>kies een school type</option>
                         <option value="basisschool">basisschool</option>
                         <option value="middelbare school">middelbare school</option>
                     </select>

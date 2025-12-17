@@ -19,6 +19,10 @@
     font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
 }
 
+input{
+    background-color: var(--quaternary-color) !important;
+}
+
 html, body {
     height: 100%;
     margin: 0;
@@ -378,10 +382,10 @@ footer {
 
 
 .admin_users {
-    flex: 1;              /* neemt de resterende ruimte naast sidebar */
-    padding: 20px;        /* optioneel voor ruimte binnenin */
-    max-width: none;      /* niet centreren */
-    margin: 0;            /* geen automatische centrering */
+    flex: 1;
+    padding: 20px;
+    max-width: none;
+    margin: 0;
     box-sizing: border-box;
 }
 
@@ -389,7 +393,8 @@ footer {
 .admin_users__title {
     font-size: 2em;
     font-weight: bold;
-    margin-top: 20px;
+    margin-bottom: 15px;
+    color: var(--accent-color);
 }
 
 .admin_users__table {
@@ -409,7 +414,7 @@ footer {
 
 
 .admin_users__button {
-    background-color: #007bff;
+    background-color: #07d564;
     color: white;
     padding: 6px 12px;
     border: none;
@@ -418,7 +423,21 @@ footer {
 }
 
 .admin_users__button:hover {
-    background-color: #0056b3;
+    background-color: #04cc36;
+}
+
+
+.admin_users__button_delete {
+    background-color: #e74c3c;
+    color: white;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.admin_users__button_delete:hover {
+    background-color: #c0392b;
 }
 
 .text-center {
@@ -428,6 +447,15 @@ footer {
 .admin_page {
     display: flex;
     min-height: 100%;
+}
+
+.admin_users__table-container {
+    overflow-x: auto;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: var(--tertiary-color);
+    padding: 30px;
 }
 
 .alert {
@@ -492,6 +520,48 @@ footer {
     flex: 1;
     padding: 20px;
 }
+
+
+select{
+    min-inline-size: 14ch;
+    justify-content: space-between;
+
+    &, &::picker(select){
+        appearance: base-select;
+        padding: 1rem;
+        border: var(--border) 1px solid;
+        border-radius: 1rem;
+        background-color: var(--quaternary-color);
+        line-height: 1.6;
+
+    }
+
+    &::picker(select){
+        margin-block-start: 0.5rem;
+    }
+
+    &::picker-icon{
+        display: none;
+    }
+
+    .picker{
+        transition: rotate 0.3s ease;
+
+        :open &{
+            rotate: 90deg;
+        }
+    }
+
+    selectedcontent > * {
+        transition: translate 1s var(--spring-easing), opacity 1s;
+
+        @starting-style {
+            translate: 0% 100%;
+            opacity: 0;
+        }
+    }
+}
+
 
 
 
