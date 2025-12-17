@@ -18,6 +18,18 @@ class TeamController extends Controller
     }
 
     /**
+     * Admin listing for teams.
+     */
+    public function adminIndex()
+    {
+        $teams = Team::with(['school','pool'])->get();
+        $schools = School::all();
+        $pools = Pool::all();
+
+        return view('admin_Teams', compact('teams','schools','pools'));
+    }
+
+    /**
      * Show the form for creating a new resource.
      */
     public function create()
@@ -58,7 +70,7 @@ class TeamController extends Controller
      */
     public function edit(Team $team)
     {
-        //
+        // Optionally return a dedicated edit view
     }
 
     /**
@@ -66,7 +78,10 @@ class TeamController extends Controller
      */
     public function update(UpdateTeamRequest $request, Team $team)
     {
-        //
+        // Keep resource update if used via resource routes
+        $validated = $request->validated();
+        $team->update($validated);
+        return redirect()->route('teams.index')->with('success', 'Team bijgewerkt!');
     }
 
     /**
@@ -74,6 +89,34 @@ class TeamController extends Controller
      */
     public function destroy(Team $team)
     {
-        //
+        $team->delete();
+        return redirect()->route('teams.index')->with('success', 'Team verwijderd!');
+    }
+
+    /**
+     * Admin update handler.
+     */
+    public function adminUpdate(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'referee' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
+        ]);
+
+        $team = Team::findOrFail($id);
+        $team->update($validated);
+
+        return redirect()->route('admin_Teams')->with('success', 'Team bijgewerkt!');
+    }
+
+    /**
+     * Admin destroy handler.
+     */
+    public function adminDestroy($id)
+    {
+        $team = Team::findOrFail($id);
+        $team->delete();
+
+        return redirect()->route('admin_Teams')->with('success', 'Team verwijderd!');
     }
 }

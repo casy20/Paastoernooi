@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MatcheController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\SchoolController;
+use Illuminate\Routing\RouteUri;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [MatcheController::class, 'index'])->name('home');
@@ -31,10 +32,20 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/admin/users/{id}', [ProfileController::class,'adminUsersUpdate'])->name('admin_Users.update');
     Route::delete('/admin/users/{id}', [ProfileController::class, 'adminUsersdestroy'])
     ->name('admin_Users.destroy');
-
+   
+    Route::get('/admin/school', [SchoolController::class,'index'])->name('admin_Schools');
+    Route::delete('/admin/school/{id}', [SchoolController::class, 'destroy'])
+    ->name('admin_Schools.destroy');    
+    route::put('/admin/schools/{id}', [SchoolController::class,'Update'])->name('admin_Schools.update');
 
     Route::get('/team_create', [TeamController::class,'create'])->name('team_create');
     Route::get('/create_school', [SchoolController::class,'create'])->name('create_school');
+    
+    // Admin teams
+    Route::get('/admin/teams', [TeamController::class,'adminIndex'])->name('admin_Teams');
+    Route::put('/admin/teams/{id}', [TeamController::class,'adminUpdate'])->name('admin_Teams.update');
+    Route::delete('/admin/teams/{id}', [TeamController::class,'adminDestroy'])->name('admin_Teams.destroy');
+
 });
 
 require __DIR__.'/auth.php';

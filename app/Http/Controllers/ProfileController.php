@@ -20,6 +20,7 @@ class ProfileController extends Controller
         ]);
     }
 
+
     /**
      * Update profiel van ingelogde gebruiker
      */

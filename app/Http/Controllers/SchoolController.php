@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 
+
 class SchoolController extends Controller
 {
     /**
@@ -19,7 +20,7 @@ class SchoolController extends Controller
     public function index()
     {
         $schools = School::all();
-        return view("schools.index", compact("schools"));
+        return view("admin_Schools", compact("schools"));
     }
 
     /**
@@ -58,25 +59,30 @@ class SchoolController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(School $school)
+    public function edit(string $id)
     {
-        //
-
+        $school = School::findOrFail($id);
+        return view('admin_Schools', compact('school'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateSchoolRequest $request, School $school)
+    public function update(Request $request, School $school)
     {
-        //
+        $schools = School::findOrFail($request->id);
+        $schools->name = $request->name;
+        $schools->school_type = $request->school_type;
+        $schools->save();
+        return redirect()->route('admin_Schools')->with('success', 'School bijgewerkt!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(School $school)
+    public function destroy(string $id)
     {
-        //
+        School::findOrFail($id)->delete();
+        return redirect()->route('admin_Schools')->with('success', 'School verwijderd!');
     }
 }

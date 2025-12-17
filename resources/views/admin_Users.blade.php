@@ -1,14 +1,13 @@
 <x-base-layout>
 
     <div class="admin_page">
-
         <!-- Linker navigatie -->
         <aside class="admin_nav">
             <h2 class="admin_nav__title">Navigatie</h2>
             <ul class="admin_nav__menu">
-                <li><a href="">School</a></li>
-                <li><a href="">Team</a></li>
-                <li><a href="" class="active">Gebruikers</a></li>
+                <li><a href="{{ route('admin_Schools') }}" >School</a></li>
+                <li><a href="{{ route('admin_Teams') }}">Team</a></li>
+                <li><a href="{{ route('admin_Users') }}" class="active">Gebruikers</a></li>
             </ul>
         </aside>
 
