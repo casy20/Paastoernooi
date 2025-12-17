@@ -19,7 +19,7 @@ class SchoolController extends Controller
     public function index()
     {
         $schools = School::all();
-        return view("schools.index", compact("schools"));
+        return view("admin_Schools", compact("schools"));
     }
 
     /**
@@ -75,7 +75,7 @@ class SchoolController extends Controller
 
         $school->update($validated);
 
-        return redirect()->route('home')->with('success', 'School bijgewerkt!');
+        return redirect()->route('admin_Schools')->with('success', 'School bijgewerkt!');
     }
 
     /**

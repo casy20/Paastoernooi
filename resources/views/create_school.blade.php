@@ -12,8 +12,8 @@
                     <label for="school_type"></label>
                     <select name="school_type" required class="team_input">
                         <option value="">kies een school type</option>
-                        <option value="basisschool">basisschool</option>
-                        <option value="middelbare school">middelbare school</option>
+                        <option value="Basisschool">Basisschool</option>
+                        <option value="Middelbare school">Middelbare school</option>
                     </select>
                 </div>
 
