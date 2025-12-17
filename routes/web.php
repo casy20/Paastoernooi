@@ -38,9 +38,13 @@ Route::middleware(['auth'])->group(function () {
     ->name('admin_Schools.destroy');    
     route::put('/admin/schools/{id}', [SchoolController::class,'Update'])->name('admin_Schools.update');
 
-
     Route::get('/team_create', [TeamController::class,'create'])->name('team_create');
     Route::get('/create_school', [SchoolController::class,'create'])->name('create_school');
+    
+    // Admin teams
+    Route::get('/admin/teams', [TeamController::class,'adminIndex'])->name('admin_Teams');
+    Route::put('/admin/teams/{id}', [TeamController::class,'adminUpdate'])->name('admin_Teams.update');
+    Route::delete('/admin/teams/{id}', [TeamController::class,'adminDestroy'])->name('admin_Teams.destroy');
 
 });
 

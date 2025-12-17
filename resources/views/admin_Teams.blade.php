@@ -5,9 +5,9 @@
         <aside class="admin_nav">
             <h2 class="admin_nav__title">Navigatie</h2>
             <ul class="admin_nav__menu">
-                <li><a href="">School</a></li>
-                <li><a href="">Team</a></li>
-                <li><a href="" class="active">Gebruikers</a></li>
+                <li><a href="{{ route('admin_Schools') }}">School</a></li>
+                <li><a href="{{ route('admin_Teams') }}" class="active">Team</a></li>
+                <li><a href="{{ route('admin_Users') }}">Gebruikers</a></li>
             </ul>
         </aside>
 
@@ -43,25 +43,30 @@
             <table class="admin_users__table">
                 <thead>
                     <tr>
-                        <th>Naam</th>
-                        <th>schooltype</th>
+                        <th>naam school</th>
+                        <th>naam team</th>
+                        <th>Scheids</th>
+                        <th>Edit</th>
+                        <th>Verwijder</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($schools as $school)
+                    @foreach ($teams as $team)
                         <tr>
-                            <!-- Update-form -->
-                            <form action="{{ route('admin_Users.update', $user->id) }}" method="POST">
+                            <form action="{{ route('admin_Teams.update', $team->id) }}" method="POST">
                                 @csrf
                                 @method('PUT')
 
                                 <td>
-                                    <input type="text" name="name" value="{{ $school->name }}" class="admin_users__input">
-                                </td>
-                                <td>
-                                    <input type="text" name="schooltype" value="{{ $school->schooltype }}" class="admin_users__input">
+                                    {{ $team->school->name }}
                                 </td>
 
+                                <td>
+                                    <input type="text" name="referee" value="{{ $team->referee }}" class="admin_users__input">
+                                </td>
+                                <td>
+                                    <input type="text" name="name" value="{{ $team->name }}" class="admin_users__input">
+                                </td>
                                 <td>
                                     <button type="submit" class="admin_users__button">
                                         bewerk
@@ -69,15 +74,11 @@
                                 </td>
                             </form>
 
-                            <!-- Delete-form -->
                             <td>
-                                <form action="{{ route('admin_Users.destroy', $user->id) }}" method="POST">
+                                <form action="{{ route('admin_Teams.destroy', $team->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="admin_users__button admin_users__button--delete"
-                                        onclick="return confirm('Weet je zeker dat je dit team wilt verwijderen?');">
-                                        verwijder
-                                    </button>
+                                    <button type="submit" class="admin_users__button admin_users__button--delete" onclick="return confirm('Weet je zeker dat je dit team wilt verwijderen?');">verwijder</button>
                                 </form>
                             </td>
 

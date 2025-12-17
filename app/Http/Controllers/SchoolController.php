@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 
+
 class SchoolController extends Controller
 {
     /**
@@ -58,9 +59,10 @@ class SchoolController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(School $school)
+    public function edit(string $id)
     {
-        return view('create_school', compact('school'));
+        $school = School::findOrFail($id);
+        return view('admin_Schools', compact('school'));
     }
 
     /**
@@ -68,23 +70,19 @@ class SchoolController extends Controller
      */
     public function update(Request $request, School $school)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'school_type' => 'required|string|max:255',
-        ]);
-
-        $school->update($validated);
-
+        $schools = School::findOrFail($request->id);
+        $schools->name = $request->name;
+        $schools->school_type = $request->school_type;
+        $schools->save();
         return redirect()->route('admin_Schools')->with('success', 'School bijgewerkt!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(School $school)
+    public function destroy(string $id)
     {
-        //
-        school :: findOrFail()->delete();
-        return redirect()->route('festival.index');
+        School::findOrFail($id)->delete();
+        return redirect()->route('admin_Schools')->with('success', 'School verwijderd!');
     }
 }
