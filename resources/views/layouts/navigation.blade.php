@@ -43,6 +43,9 @@
                             <x-dropdown-link style="cursor: pointer;" :href="route('home')">
                                 {{ __('home') }}
                             </x-dropdown-link>
+                             <x-dropdown-link style="cursor: pointer;" :href="route('admin_Users')">
+                                {{ __('admin') }}
+                            </x-dropdown-link>
 
                             <!-- Authentication -->
                             <form method="POST" action="{{ route('logout') }}">
@@ -102,6 +105,12 @@
                         {{ __('Home') }}
                     </x-responsive-nav-link>
 
+                    @if (Auth::user()->admin == 1)
+                             <x-responsive-nav-link :href="route('admin_Users')">
+                            {{ __('Admin') }}
+                        </x-responsive-nav-link>
+                    @endif
+                   
                     <!-- Authentication -->
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
