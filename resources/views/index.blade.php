@@ -10,7 +10,9 @@
                 </h3>
                 <a href="{{ route('team_create') }}">Inschrijven</a>
                 <a href="{{ route('create_school') }}">school toevoegen</a>
-
+                <a href="{{ route('match.generator') }}">Genereer wedstrijden</a>
+                <a href="{{ route('matches.list') }}">Wedstrijden</a>
+                
             </div>
             <img src="{{ asset('img/logo.png') }}" alt="Stichting Paastoernooien Bergen op Zoom">
         </div>

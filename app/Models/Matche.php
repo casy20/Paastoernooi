@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Matche extends Model
 {
@@ -18,7 +19,19 @@ class Matche extends Model
         'field',
         'referee',
         'start_time',
+        'end_time',
+        'pause_minutes',
         'type',
         'tournament_id',
     ];
+
+    public function team1(): BelongsTo
+    {
+        return $this->belongsTo(Team::class, 'team_1_id');
+    }
+
+    public function team2(): BelongsTo
+    {
+        return $this->belongsTo(Team::class, 'team_2_id');
+    }
 }

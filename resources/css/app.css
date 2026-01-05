@@ -9,3 +9,133 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
+
+/* Match generator page */
+.match-generator {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.match-container {
+    max-width: 900px;
+    margin: 24px auto 40px;
+    background: #ffffff;
+    padding: 26px;
+    border-radius: 14px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.match-title {
+    margin-bottom: 16px;
+    font-size: 28px;
+    font-weight: 700;
+    color: #222;
+    text-align: center;
+}
+
+.match-actions {
+    display: flex;
+    gap: 12px;
+    margin: 6px 0 14px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.match-actions .submit {
+    padding: 10px 18px;
+    border-radius: 8px;
+    background: #111827;
+    color: #fff;
+    border: none;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.match-actions .submit:hover {
+    background: #1f2937;
+}
+
+.match-actions .submit.danger {
+    background: #e11d48;
+    color: #fff;
+}
+
+.match-actions .submit.danger:hover {
+    background: #be123c;
+}
+
+.match-alert {
+    margin-bottom: 12px;
+}
+
+.matches-heading {
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    color: #444;
+}
+
+.matches-divider {
+    border: 0;
+    border-top: 1px solid #e5e7eb;
+    margin: 8px 0 14px;
+}
+
+.matches-table-wrapper {
+    overflow-x: auto;
+}
+
+.matches-table {
+    width: 100%;
+    min-width: 700px;
+    border-collapse: collapse;
+    border: 2px solid #6b7280;
+    background: #f7f8fa;
+    box-shadow: none;
+}
+
+.matches-table thead {
+    background: #e5e7eb;
+}
+
+.matches-table th {
+    padding: 9px 12px;
+    border: 2px solid #6b7280;
+    font-size: 13px;
+    text-align: center;
+    line-height: 1.4;
+    color: #111827;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+.matches-table td {
+    padding: 9px 12px;
+    border: 2px solid #6b7280;
+    font-size: 13px;
+    text-align: center;
+    line-height: 1.4;
+}
+
+.matches-table tbody tr:nth-child(odd) {
+    background: #f7f8fa;
+}
+
+.matches-table tbody tr:nth-child(even) {
+    background: #f7f8fa;
+}
+
+.matches-table tbody tr:hover {
+    background: #e5e7eb;
+}
+
+.matches-table-empty {
+    padding: 14px;
+}
+
+.matches-table .col-pool {
+    text-align: left;
+}

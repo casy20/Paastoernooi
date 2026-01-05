@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [MatcheController::class, 'index'])->name('home');
 Route::get('/voetbal', [MatcheController::class, 'voetbal'])->name('voetbal');
 Route::get('/lijnbal', [MatcheController::class, 'lijnbal'])->name('lijnbal');
+Route::get('/wedstrijden', [MatcheController::class, 'list'])->name('matches.list');
+Route::get('/match_generen', [MatcheController::class, 'generator'])->name('match.generator');
+Route::post('/match_generen', [MatcheController::class, 'generate'])->name('match.generate');
+Route::post('/match_generen/clear', [MatcheController::class, 'clear'])->name('match.clear');
 
 Route::resource('teams', TeamController::class);
 Route::resource('matches', MatcheController::class);
