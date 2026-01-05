@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Matche;
 use App\Models\Team;
+use App\Models\Pool;
 use App\Http\Requests\StoreMatcheRequest;
 use App\Http\Requests\UpdateMatcheRequest;
 use Illuminate\Http\RedirectResponse;
@@ -46,7 +47,9 @@ class MatcheController extends Controller
             'team2.pool',
         ])->latest()->get();
 
-        return view('wedstrijden', compact('matches'));
+        $teams = Team::with(['pool', 'school'])->orderBy('pool_id')->orderBy('name')->get();
+
+        return view('wedstrijden', compact('matches', 'teams'));
     }
 
     /**
@@ -60,41 +63,109 @@ class MatcheController extends Controller
             'team2',
             'team2.pool',
         ])->latest()->take(10)->get();
-        return view('match_generen', compact('matches'));
+        
+        $teams = Team::with(['pool', 'school'])->orderBy('pool_id')->orderBy('name')->get();
+        
+        return view('match_generen', compact('matches', 'teams'));
     }
 
     /**
-     * Genereer een wedstrijd op basis van 2 willekeurige teams.
+     * Genereer alle round-robin wedstrijden voor alle pools in één keer.
      */
     public function generate(): RedirectResponse
     {
-        $teams = Team::with('pool')->inRandomOrder()->take(2)->get();
-
-        if ($teams->count() < 2) {
-            return back()->with('error', 'Niet genoeg teams om een wedstrijd te maken.');
+        // Verwijder eerst alle bestaande wedstrijden
+        DB::table('matches')->truncate();
+        
+        // Haal alle pools op
+        $pools = Pool::all();
+        
+        if ($pools->isEmpty()) {
+            return back()->with('error', 'Geen pools gevonden. Voeg eerst pools toe.');
         }
-
-        $poolName = $teams[0]->pool->name ?? '';
-        [$durationMinutes, $pauseMinutes] = $this->getDurationAndPauseForPool($poolName);
-
-        $start = Carbon::now();
-        $end = (clone $start)->addMinutes($durationMinutes);
-
-        $match = Matche::create([
-            'team_1_id' => $teams[0]->id,
-            'team_2_id' => $teams[1]->id,
-            'team_1_score' => 0,
-            'team_2_score' => 0,
-            'field' => 1,
-            'referee' => $teams[0]->referee ?? 'n.n.',
-            'start_time' => $start->format('H:i:s'),
-            'end_time' => $end->format('H:i:s'),
-            'pause_minutes' => $pauseMinutes,
-            'type' => 'Automatisch',
-            'tournament_id' => 1,
-        ]);
-
-        return back()->with('success', "Wedstrijd {$match->id} gegenereerd: {$teams[0]->name} vs {$teams[1]->name}");
+        
+        $totalMatchesCreated = 0;
+        
+        // Voor elke pool, genereer alle wedstrijden
+        foreach ($pools as $pool) {
+            // Haal alle teams op voor deze pool
+            $poolTeams = Team::where('pool_id', $pool->id)->get();
+            
+            if ($poolTeams->count() < 2) {
+                continue; // Sla pools over met minder dan 2 teams
+            }
+            
+            // Genereer alle round-robin wedstrijden voor deze pool
+            $matches = $this->generateRoundRobinMatches($poolTeams, $pool);
+            
+            // Maak de wedstrijden aan
+            foreach ($matches as $matchData) {
+                Matche::create($matchData);
+                $totalMatchesCreated++;
+            }
+        }
+        
+        if ($totalMatchesCreated === 0) {
+            return back()->with('error', 'Geen wedstrijden kunnen genereren. Zorg ervoor dat er minimaal 2 teams per pool zijn.');
+        }
+        
+        return back()->with('success', "Alle wedstrijden gegenereerd! {$totalMatchesCreated} wedstrijden aangemaakt voor alle pools.");
+    }
+    
+    /**
+     * Genereer alle round-robin wedstrijden voor een set teams binnen een pool.
+     * Elk team speelt één keer tegen elk ander team.
+     */
+    private function generateRoundRobinMatches($teams, Pool $pool): array
+    {
+        $matches = [];
+        $teamArray = $teams->toArray();
+        $teamCount = count($teamArray);
+        
+        // Bepaal duur en pauze op basis van pool naam
+        [$durationMinutes, $pauseMinutes] = $this->getDurationAndPauseForPool($pool->name);
+        
+        // Starttijd voor de eerste wedstrijd
+        $currentTime = Carbon::createFromTime(9, 0, 0); // Start om 09:00
+        $field = 1;
+        $matchNumber = 0;
+        
+        // Genereer alle combinaties (elke team tegen elke andere team, maar niet tegen zichzelf)
+        for ($i = 0; $i < $teamCount; $i++) {
+            for ($j = $i + 1; $j < $teamCount; $j++) {
+                $team1 = $teamArray[$i];
+                $team2 = $teamArray[$j];
+                
+                $startTime = (clone $currentTime)->format('H:i:s');
+                $endTime = (clone $currentTime)->addMinutes($durationMinutes)->format('H:i:s');
+                
+                // Verhoog tijd voor volgende wedstrijd (duur + pauze)
+                $currentTime->addMinutes($durationMinutes + $pauseMinutes);
+                
+                // Wissel van veld elke 3 wedstrijden
+                if ($matchNumber > 0 && $matchNumber % 3 == 0) {
+                    $field = ($field == 1) ? 2 : 1;
+                }
+                
+                $matches[] = [
+                    'team_1_id' => $team1['id'],
+                    'team_2_id' => $team2['id'],
+                    'team_1_score' => 0,
+                    'team_2_score' => 0,
+                    'field' => $field,
+                    'referee' => $team1['referee'] ?? 'n.n.',
+                    'start_time' => $startTime,
+                    'end_time' => $endTime,
+                    'pause_minutes' => $pauseMinutes,
+                    'type' => 'Round-Robin',
+                    'tournament_id' => 1,
+                ];
+                
+                $matchNumber++;
+            }
+        }
+        
+        return $matches;
     }
 
     /**

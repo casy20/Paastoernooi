@@ -1,5 +1,5 @@
 export default {
     plugins: {
-        "@tailwindcss/postcss": {}
+        // Tailwind CSS wordt via @tailwindcss/vite plugin in vite.config.js afgehandeld
     },
 };

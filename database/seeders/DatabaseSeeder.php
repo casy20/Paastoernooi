@@ -27,15 +27,11 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $this->call([
-<<<<<<< Updated upstream
-            PoolSeeder::class,
-            SchoolSeeder::class,
-=======
             SchoolSeeder::class,
             PoolSeeder::class,
->>>>>>> Stashed changes
             TeamSeeder::class,
-            MatcheSeeder::class,
+            // TeamAndMatchSeeder genereert teams en alle wedstrijden automatisch
+            // MatcheSeeder::class, // Uitgecommentarieerd omdat TeamAndMatchSeeder dit doet
         ]);
     }
 }

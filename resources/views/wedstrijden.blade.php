@@ -2,6 +2,34 @@
     <div class="team_text match-generator match-container">
         <h1 class="match-title">Wedstrijden</h1>
 
+        <h2 class="matches-heading">Alle Teams ({{ $teams->count() }})</h2>
+        <div class="matches-table-wrapper">
+            <table class="matches-table">
+                <thead>
+                    <tr>
+                        <th>Team Naam</th>
+                        <th>School</th>
+                        <th class="col-pool">Pool</th>
+                        <th>Scheidsrechter</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse($teams as $team)
+                        <tr>
+                            <td>{{ $team->name ?? 'Onbekend' }}</td>
+                            <td>{{ $team->school->name ?? 'Onbekend' }}</td>
+                            <td class="col-pool">{{ $team->pool->name ?? 'Onbekend' }}</td>
+                            <td>{{ $team->referee ?? '-' }}</td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="4" class="matches-table-empty">Geen teams gevonden.</td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+
         <h2 class="matches-heading">Gegenereerde wedstrijden</h2>
         <hr class="matches-divider">
         <div class="matches-table-wrapper">
