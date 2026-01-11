@@ -21,9 +21,9 @@
                             <a href="{{ route('register') }}" class="create-link">Register</a>
                         @endguest
                     </div>
+                    @auth
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
-                                @auth
                                 <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-700 hover:text-gray-900 focus:outline-none transition ease-in-out duration-150">
                                     <div>{{ Auth::user()->name }}</div>
                                     <div class="ms-1">
@@ -32,7 +32,6 @@
                                         </svg>
                                     </div>
                                 </button>
-                                @endauth
                         </x-slot>
 
                         <x-slot name="content">
@@ -43,9 +42,12 @@
                             <x-dropdown-link style="cursor: pointer;" :href="route('home')">
                                 {{ __('home') }}
                             </x-dropdown-link>
+                            
+                            @if (Auth::user() && Auth::user()->admin == 1)
                              <x-dropdown-link style="cursor: pointer;" :href="route('admin_Users')">
                                 {{ __('admin') }}
                             </x-dropdown-link>
+                            @endif
 
                             <!-- Authentication -->
                             <form method="POST" action="{{ route('logout') }}">
@@ -59,6 +61,7 @@
                             </form>
                         </x-slot>
                     </x-dropdown>
+                    @endauth
                 </div>
 
                 <!-- Hamburger -->
@@ -105,7 +108,7 @@
                         {{ __('Home') }}
                     </x-responsive-nav-link>
 
-                    @if (Auth::user()->admin == 1)
+                    @if (Auth::user() && Auth::user()->admin == 1)
                              <x-responsive-nav-link :href="route('admin_Users')">
                             {{ __('Admin') }}
                         </x-responsive-nav-link>

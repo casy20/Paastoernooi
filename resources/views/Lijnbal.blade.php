@@ -67,6 +67,50 @@
 
             </div>
         </div>
+
+        <!-- WEDSTRIJDEN TABEL -->
+        @if($matches->count() > 0)
+        <div class="team_text match-generator match-container">
+            <h2 class="matches-heading">Lijnbal Wedstrijden ({{ $matches->count() }})</h2>
+            <hr class="matches-divider">
+            <div class="matches-table-wrapper">
+                <table class="matches-table">
+                    <thead>
+                        <tr>
+                            <th>Team 1</th>
+                            <th>Score 1</th>
+                            <th>Team 2</th>
+                            <th>Score 2</th>
+                            <th class="col-pool">Pool</th>
+                            <th>Veld</th>
+                            <th>Starttijd</th>
+                            <th>Eindtijd</th>
+                            <th>Pauze</th>
+                            <th>Type</th>
+                            <th>Scheidsrechter</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($matches as $match)
+                            <tr>
+                                <td>{{ $match->team1->name ?? 'Onbekend' }}</td>
+                                <td><strong>{{ $match->team_1_score ?? '-' }}</strong></td>
+                                <td>{{ $match->team2->name ?? 'Onbekend' }}</td>
+                                <td><strong>{{ $match->team_2_score ?? '-' }}</strong></td>
+                                <td class="col-pool">{{ $match->team1->pool->name ?? 'Onbekend' }}</td>
+                                <td>{{ $match->field ?? '-' }}</td>
+                                <td>{{ $match->start_time }}</td>
+                                <td>{{ $match->end_time ?? '-' }}</td>
+                                <td>{{ $match->pause_minutes ?? '-' }} min</td>
+                                <td>{{ $match->type ?? '-' }}</td>
+                                <td>{{ $match->referee }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        @endif
     </div>
             <footer>
             <div class="footer-container">

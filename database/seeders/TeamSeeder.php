@@ -69,7 +69,7 @@ class TeamSeeder extends Seeder
                 $teamName = $teamNames[$teamCounter % count($teamNames)] . ' ' . ($i + 1);
                 $referee = $referees[array_rand($referees)];
                 
-                DB::table('teams')->insert([
+        DB::table('teams')->insert([
                     'school_id' => $school->id,
                     'pool_id' => $pool->id,
                     'name' => $teamName,

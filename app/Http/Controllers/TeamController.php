@@ -24,7 +24,8 @@ class TeamController extends Controller
     {
         $teams = Team::with(['school','pool'])->get();
         $schools = School::all();
-        $pools = Pool::all();
+        // Filter pools: alleen echte pools (niet "Poule A")
+        $pools = Pool::where('name', 'not like', 'Poule A%')->get();
 
         return view('admin_Teams', compact('teams','schools','pools'));
     }
@@ -35,7 +36,8 @@ class TeamController extends Controller
     public function create()
     {
         $schools = School::all();
-        $pools = Pool::all();
+        // Filter pools: alleen echte pools (niet "Poule A")
+        $pools = Pool::where('name', 'not like', 'Poule A%')->get();
 
         return view('team_create', compact('schools', 'pools'));
     }

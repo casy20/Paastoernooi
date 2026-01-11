@@ -18,12 +18,14 @@
 }
 
 .match-container {
-    max-width: 900px;
+    max-width: 99%;
+    width: 99%;
     margin: 24px auto 40px;
     background: #ffffff;
-    padding: 26px;
+    padding: 15px;
     border-radius: 14px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    box-sizing: border-box;
 }
 
 .match-title {
@@ -85,16 +87,21 @@
 }
 
 .matches-table-wrapper {
-    overflow-x: auto;
+    overflow-x: visible;
+    width: 100%;
+    margin: 0 auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .matches-table {
     width: 100%;
-    min-width: 700px;
     border-collapse: collapse;
     border: 2px solid #6b7280;
     background: #f7f8fa;
-    box-shadow: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
+    table-layout: fixed;
+    font-size: 0.85em;
 }
 
 .matches-table thead {
@@ -102,22 +109,47 @@
 }
 
 .matches-table th {
-    padding: 9px 12px;
-    border: 2px solid #6b7280;
-    font-size: 13px;
+    padding: 6px 3px;
+    border-right: 2px solid #6b7280;
+    border-bottom: 2px solid #6b7280;
+    font-size: 11px;
     text-align: center;
-    line-height: 1.4;
+    line-height: 1.2;
     color: #111827;
     text-transform: uppercase;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.01em;
+    font-weight: 600;
+    white-space: normal;
+    word-wrap: break-word;
+}
+
+.matches-table th:last-child {
+    border-right: 2px solid #6b7280;
+}
+
+.matches-table th.col-pool {
+    text-align: left;
 }
 
 .matches-table td {
-    padding: 9px 12px;
-    border: 2px solid #6b7280;
-    font-size: 13px;
+    padding: 5px 3px;
+    border-right: 1px solid #e5e7eb;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 10px;
     text-align: center;
-    line-height: 1.4;
+    line-height: 1.2;
+    white-space: normal;
+    word-wrap: break-word;
+    overflow: hidden;
+}
+
+.matches-table td:last-child {
+    border-right: 2px solid #6b7280;
+}
+
+.matches-table td.col-pool {
+    text-align: left;
+    white-space: normal;
 }
 
 .matches-table tbody tr:nth-child(odd) {
@@ -125,11 +157,21 @@
 }
 
 .matches-table tbody tr:nth-child(even) {
-    background: #f7f8fa;
+    background: #ffffff;
+}
+
+.matches-table tbody tr {
+    border-bottom: 2px solid #d1d5db;
+    transition: background-color 0.2s ease;
+}
+
+.matches-table tbody tr:last-child {
+    border-bottom: 2px solid #6b7280;
 }
 
 .matches-table tbody tr:hover {
-    background: #e5e7eb;
+    background: #e5e7eb !important;
+    border-bottom-color: #9ca3af;
 }
 
 .matches-table-empty {
@@ -138,4 +180,34 @@
 
 .matches-table .col-pool {
     text-align: left;
+}
+
+/* Teams tabel styling - mooie borders en scheiding */
+.matches-table tbody tr {
+    border-bottom: 2px solid #d1d5db;
+}
+
+.matches-table tbody tr:last-child {
+    border-bottom: 2px solid #6b7280;
+}
+
+.matches-table tbody tr:hover {
+    background: #e5e7eb;
+    border-bottom-color: #9ca3af;
+}
+
+.matches-table td {
+    border-right: 1px solid #e5e7eb;
+}
+
+.matches-table td:last-child {
+    border-right: none;
+}
+
+.matches-table th {
+    border-right: 2px solid #6b7280;
+}
+
+.matches-table th:last-child {
+    border-right: 2px solid #6b7280;
 }
