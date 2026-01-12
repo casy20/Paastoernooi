@@ -11,9 +11,7 @@
                 <a href="{{ route('team_create') }}">Inschrijven</a>
                 <a href="{{ route('create_school') }}">school toevoegen</a>
                 <a href="{{ route('matches.list') }}">Wedstrijden</a>
-                @if($hasCompletedMatches ?? false)
-                    <a href="{{ route('matches.scores') }}">Scorebord</a>
-                @endif
+                <a href="{{ route('matches.scores') }}">Scorebord</a>
                 
             </div>
             <img src="{{ asset('img/logo.png') }}" alt="Stichting Paastoernooien Bergen op Zoom">
